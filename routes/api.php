@@ -18,5 +18,5 @@ use Illuminate\Support\Facades\Route;
 // Route::get('', [ProjectController::class])
 
 Route::name('api')->group(function () {
-    Route::resource('projects', ProjectController::class)->only(['index',]);
+    Route::resource('projects', ProjectController::class)->only(['index', 'show']);
 });

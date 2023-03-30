@@ -49,16 +49,32 @@ class ProjectController extends Controller
     //     //
     // }
 
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show($id)
-    // {
-    //     //
-    // }
+    /**
+     * Display the specified resource.
+     *
+     * @param  syting  $slug
+     * @return \Illuminate\Http\Response
+     */
+    public function show($slug)
+    {
+        $project = Project::where('slug', $slug)->with('type', 'technologies')->first();
+
+        if ($project) {
+            return response()->json([
+                'success' => true,
+                'code' => 200,
+                'message' => 'ok',
+                'project' => $project
+            ]);
+        }
+        else {
+            return response()->json([
+                'success' => false,
+                'code' => 404,
+                'message' => 'Not Found',
+            ]);
+        }
+    }
 
     // /**
     //  * Show the form for editing the specified resource.
